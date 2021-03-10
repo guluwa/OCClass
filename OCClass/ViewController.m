@@ -1,0 +1,135 @@
+//
+//  ViewController.m
+//  OCClass
+//
+//  Created by mac on 2021/2/22.
+//
+
+#import "ViewController.h"
+#import "UICollectionViewVC.h"
+#import "UIScrollViewVC.h"
+#import "NormalTableViewCell.h"
+#import "WKWebViewVCViewController.h"
+#import "UIViewAnimationView.h"
+
+@interface TestView : UIView
+
+@end
+
+@implementation TestView
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)willMoveToSuperview:(nullable UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+}
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
+}
+- (void)willMoveToWindow:(nullable UIWindow *)newWindow {
+    [super willMoveToWindow:newWindow];
+}
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+}
+
+@end
+
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate, NormalTableCellDelegate>
+
+@end
+
+@implementation ViewController
+
+- (instancetype)init {
+    self = [super init];
+    /**
+     防止父类初始化失败，导致整体逻辑错误，所以要判断是否已经正确的alloc分配内存以及是否初始化成功。
+     对于alloc方法来说系统是有可能失败的，同时init函数如果在需要传参数的时候，传入错误的参数也可能返回nil。
+    */
+    if (self) {
+        NSLog(@"init");
+    }
+    return self;
+}
+
+- (void)loadView {
+    NSLog(@"loadView");
+    [super loadView];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"viewWillAppear");
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"viewDidAppear");
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"viewWillDisappear");
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"viewDidDisappear");
+    [super viewDidDisappear:animated];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSLog(@"viewDidLoad");
+//    TestView *view = [[TestView alloc] init];
+//    view.backgroundColor = [UIColor grayColor];
+//    view.frame = CGRectMake(100, 100, 100, 100);
+//    [self.view addSubview:view];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame: self.view.bounds];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [self.view addSubview:tableView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 110;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] init];
+    viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCell"];
+    if (!cell) {
+        cell = [[NormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"tableViewCell"];
+        cell.delegate = self;
+    }
+    [cell layoutTableViewCell];
+//    cell.textLabel.text = [NSString stringWithFormat: @"主标题 - %@", @(indexPath.row)];
+//    cell.detailTextLabel.text = @"副标题";
+    return cell;
+}
+
+- (void)tableViewCell:(UITableViewCell *)tableViewCell clickDeleteButton:(UIButton *)deleteButton {
+    UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
+    [animationView showDeleteView];
+}
+@end
