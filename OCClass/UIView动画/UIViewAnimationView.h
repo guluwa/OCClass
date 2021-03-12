@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewAnimationView : UIView
 
-- (void)showDeleteView;
+- (void)showDeleteViewFromPoint:(CGPoint)point clickBlock:(dispatch_block_t) clickBlock;
 - (void)dismissDeleteView;
 - (void)clickButton;
 

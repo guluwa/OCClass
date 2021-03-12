@@ -11,6 +11,7 @@
 
 @property(nonatomic, strong, readwrite) UIView *backgroundView;
 @property(nonatomic, strong, readwrite) UIButton *deleteButton;
+@property(nonatomic, copy, readonly) dispatch_block_t deleteBlock;
 
 @end
 
@@ -36,11 +37,13 @@
     return self;
 }
 
-- (void)showDeleteView {
+- (void)showDeleteViewFromPoint:(CGPoint)point clickBlock:(dispatch_block_t) clickBlock {
+    
+    _deleteButton.frame = CGRectMake(point.x, point.y, 0, 0);
+    _deleteBlock = [clickBlock copy];
+    
     [[UIApplication sharedApplication].windows.lastObject addSubview:self];
-//    [UIView animateWithDuration:1.f animations:^{
-//        self.deleteButton.frame = CGRectMake(self.bounds.size.width / 2 - 100, self.bounds.size.height / 2 - 100, 200, 200);
-//    }];
+    
     [UIView animateWithDuration:1.f delay:0.f usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.deleteButton.frame = CGRectMake(self.bounds.size.width / 2 - 100, self.bounds.size.height / 2 - 100, 200, 200);
     } completion:^(BOOL finished) {
@@ -53,6 +56,9 @@
 }
 
 - (void)clickButton {
+    if (_deleteBlock) {
+        _deleteBlock();
+    }
     [self removeFromSuperview];
 }
 

@@ -43,6 +43,9 @@
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate, NormalTableCellDelegate>
 
+@property(nonatomic, strong, readwrite) UITableView *tableView;
+@property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+
 @end
 
 @implementation ViewController
@@ -55,6 +58,9 @@
     */
     if (self) {
         NSLog(@"init");
+        for(int i = 0; i < 20; i++) {
+            [_dataArray addObject:@(i)];
+        }
     }
     return self;
 }
@@ -96,10 +102,10 @@
 //    view.frame = CGRectMake(100, 100, 100, 100);
 //    [self.view addSubview:view];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame: self.view.bounds];
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc] initWithFrame: self.view.bounds];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [self.view addSubview:_tableView];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -113,7 +119,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -130,6 +136,13 @@
 
 - (void)tableViewCell:(UITableViewCell *)tableViewCell clickDeleteButton:(UIButton *)deleteButton {
     UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
-    [animationView showDeleteView];
+    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
+    
+    __weak typeof(self) wself = self;
+    [animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
+        __strong typeof(self) strongSelf = wself;
+        [strongSelf.dataArray removeLastObject];
+        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
 }
 @end
