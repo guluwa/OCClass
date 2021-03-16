@@ -11,6 +11,7 @@
 #import "NormalTableViewCell.h"
 #import "WKWebViewVCViewController.h"
 #import "UIViewAnimationView.h"
+#import "ListLoader.h"
 
 @interface TestView : UIView
 
@@ -19,24 +20,24 @@
 @implementation TestView
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
+	self = [super init];
+	if (self) {
+
+	}
+	return self;
 }
 
 - (void)willMoveToSuperview:(nullable UIView *)newSuperview {
-    [super willMoveToSuperview:newSuperview];
+	[super willMoveToSuperview:newSuperview];
 }
 - (void)didMoveToSuperview {
-    [super didMoveToSuperview];
+	[super didMoveToSuperview];
 }
 - (void)willMoveToWindow:(nullable UIWindow *)newWindow {
-    [super willMoveToWindow:newWindow];
+	[super willMoveToWindow:newWindow];
 }
 - (void)didMoveToWindow {
-    [super didMoveToWindow];
+	[super didMoveToWindow];
 }
 
 @end
@@ -45,104 +46,111 @@
 
 @property(nonatomic, strong, readwrite) UITableView *tableView;
 @property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+@property(nonatomic, strong, readwrite) ListLoader *listLoader;
 
 @end
 
 @implementation ViewController
 
 - (instancetype)init {
-    self = [super init];
-    /**
-     防止父类初始化失败，导致整体逻辑错误，所以要判断是否已经正确的alloc分配内存以及是否初始化成功。
-     对于alloc方法来说系统是有可能失败的，同时init函数如果在需要传参数的时候，传入错误的参数也可能返回nil。
-    */
-    if (self) {
-        NSLog(@"init");
-        for(int i = 0; i < 20; i++) {
-            [_dataArray addObject:@(i)];
-        }
-    }
-    return self;
+	self = [super init];
+	/**
+	   防止父类初始化失败，导致整体逻辑错误，所以要判断是否已经正确的alloc分配内存以及是否初始化成功。
+	   对于alloc方法来说系统是有可能失败的，同时init函数如果在需要传参数的时候，传入错误的参数也可能返回nil。
+	 */
+	if (self) {
+		NSLog(@"init");
+		_dataArray = [NSMutableArray arrayWithCapacity:0];
+		for(int i = 0; i < 20; i++) {
+			[_dataArray addObject:@(i)];
+		}
+		NSLog(@"%lu", (unsigned long)_dataArray.count);
+	}
+	return self;
 }
 
 - (void)loadView {
-    NSLog(@"loadView");
-    [super loadView];
+	NSLog(@"loadView");
+	[super loadView];
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc");
+	NSLog(@"dealloc");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"viewWillAppear");
-    [super viewWillAppear:animated];
+	NSLog(@"viewWillAppear");
+	[super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"viewDidAppear");
-    [super viewDidAppear:animated];
+	NSLog(@"viewDidAppear");
+	[super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear");
-    [super viewWillDisappear:animated];
+	NSLog(@"viewWillDisappear");
+	[super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    NSLog(@"viewDidDisappear");
-    [super viewDidDisappear:animated];
+	NSLog(@"viewDidDisappear");
+	[super viewDidDisappear:animated];
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    NSLog(@"viewDidLoad");
+	[super viewDidLoad];
+	NSLog(@"viewDidLoad");
 //    TestView *view = [[TestView alloc] init];
 //    view.backgroundColor = [UIColor grayColor];
 //    view.frame = CGRectMake(100, 100, 100, 100);
 //    [self.view addSubview:view];
-    
-    _tableView = [[UITableView alloc] initWithFrame: self.view.bounds];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [self.view addSubview:_tableView];
+
+	_tableView = [[UITableView alloc] initWithFrame: self.view.bounds];
+	_tableView.dataSource = self;
+	_tableView.delegate = self;
+	[self.view addSubview:_tableView];
+    _listLoader = [[ListLoader alloc] init];
+    [_listLoader listDataLoad];
 }
 
+#pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 110;
+	return 110;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] init];
-    viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
-    [self.navigationController pushViewController:viewController animated:YES];
+	WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] init];
+	viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+	[self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+	return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCell"];
-    if (!cell) {
-        cell = [[NormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"tableViewCell"];
-        cell.delegate = self;
-    }
-    [cell layoutTableViewCell];
+	NormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCell"];
+	if (!cell) {
+		cell = [[NormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"tableViewCell"];
+		cell.delegate = self;
+	}
+	[cell layoutTableViewCell];
 //    cell.textLabel.text = [NSString stringWithFormat: @"主标题 - %@", @(indexPath.row)];
 //    cell.detailTextLabel.text = @"副标题";
-    return cell;
+	return cell;
 }
 
 - (void)tableViewCell:(UITableViewCell *)tableViewCell clickDeleteButton:(UIButton *)deleteButton {
-    UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
-    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
-    
-    __weak typeof(self) wself = self;
-    [animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
-        __strong typeof(self) strongSelf = wself;
-        [strongSelf.dataArray removeLastObject];
-        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
+	UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
+	CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
+
+	__weak typeof(self) wself = self;
+	[animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
+	         __strong typeof(self) strongSelf = wself;
+	         [strongSelf.dataArray removeLastObject];
+	         [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+	 }];
 }
 @end

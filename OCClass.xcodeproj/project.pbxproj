@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04006AAB26008804007F0230 /* ListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AAA26008804007F0230 /* ListLoader.m */; };
 		0455268125EF301A00245A0F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268025EF301A00245A0F /* SceneDelegate.m */; };
 		0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268525EF32F100245A0F /* UICollectionViewVC.m */; };
 		0455268B25EF59CA00245A0F /* UIScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268A25EF59CA00245A0F /* UIScrollViewVC.m */; };
@@ -19,9 +20,12 @@
 		04CF7E1425E354FD003989D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CF7E1325E354FD003989D3 /* Assets.xcassets */; };
 		04CF7E1725E354FD003989D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CF7E1525E354FD003989D3 /* LaunchScreen.storyboard */; };
 		04CF7E1A25E354FD003989D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CF7E1925E354FD003989D3 /* main.m */; };
+		F383DB12CBC49857474DFD55 /* Pods_OCClass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A6EBA741D0277DF75E5EBD /* Pods_OCClass.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04006AA926008804007F0230 /* ListLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListLoader.h; sourceTree = "<group>"; };
+		04006AAA26008804007F0230 /* ListLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListLoader.m; sourceTree = "<group>"; };
 		0455267F25EF301A00245A0F /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0455268025EF301A00245A0F /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0455268425EF32F100245A0F /* UICollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewVC.h; sourceTree = "<group>"; };
@@ -44,6 +48,9 @@
 		04CF7E1625E354FD003989D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04CF7E1825E354FD003989D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04CF7E1925E354FD003989D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5552108BEA7DCE53851B4896 /* Pods-OCClass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCClass.release.xcconfig"; path = "Target Support Files/Pods-OCClass/Pods-OCClass.release.xcconfig"; sourceTree = "<group>"; };
+		BE66E2044455C34900DD8A1A /* Pods-OCClass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCClass.debug.xcconfig"; path = "Target Support Files/Pods-OCClass/Pods-OCClass.debug.xcconfig"; sourceTree = "<group>"; };
+		C3A6EBA741D0277DF75E5EBD /* Pods_OCClass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OCClass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +58,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F383DB12CBC49857474DFD55 /* Pods_OCClass.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04006AA8260087EE007F0230 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				04006AA926008804007F0230 /* ListLoader.h */,
+				04006AAA26008804007F0230 /* ListLoader.m */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
 		0455268325EF329C00245A0F /* UICollectionView使用 */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +124,8 @@
 			children = (
 				04CF7E0625E354FA003989D3 /* OCClass */,
 				04CF7E0525E354FA003989D3 /* Products */,
+				8A8B9217056F8B0AD8E21108 /* Pods */,
+				A707AE7D83B3B85755770689 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +140,7 @@
 		04CF7E0625E354FA003989D3 /* OCClass */ = {
 			isa = PBXGroup;
 			children = (
+				04006AA8260087EE007F0230 /* Loader */,
 				048B9FB325F7718600F72F1E /* UIView动画 */,
 				048B9FAD25F744F100F72F1E /* WKWebView使用 */,
 				0455268825EF598E00245A0F /* UIScrollView使用 */,
@@ -141,6 +161,24 @@
 			path = OCClass;
 			sourceTree = "<group>";
 		};
+		8A8B9217056F8B0AD8E21108 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE66E2044455C34900DD8A1A /* Pods-OCClass.debug.xcconfig */,
+				5552108BEA7DCE53851B4896 /* Pods-OCClass.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A707AE7D83B3B85755770689 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3A6EBA741D0277DF75E5EBD /* Pods_OCClass.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04CF7E1D25E354FD003989D3 /* Build configuration list for PBXNativeTarget "OCClass" */;
 			buildPhases = (
+				2310357B8F8AE950D8E98F86 /* [CP] Check Pods Manifest.lock */,
 				04CF7E0025E354FA003989D3 /* Sources */,
 				04CF7E0125E354FA003989D3 /* Frameworks */,
 				04CF7E0225E354FA003989D3 /* Resources */,
+				3D8BF1E53F0E0EB23B9E7D0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,11 +245,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2310357B8F8AE950D8E98F86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OCClass-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D8BF1E53F0E0EB23B9E7D0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OCClass/Pods-OCClass-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OCClass/Pods-OCClass-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OCClass/Pods-OCClass-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04CF7E0025E354FA003989D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04006AAB26008804007F0230 /* ListLoader.m in Sources */,
 				04CF7E0F25E354FA003989D3 /* ViewController.m in Sources */,
 				048B9FB025F7489A00F72F1E /* WKWebViewVCViewController.m in Sources */,
 				04CF7E0925E354FA003989D3 /* AppDelegate.m in Sources */,
@@ -358,6 +441,7 @@
 		};
 		04CF7E1E25E354FD003989D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE66E2044455C34900DD8A1A /* Pods-OCClass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -376,6 +460,7 @@
 		};
 		04CF7E1F25E354FD003989D3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5552108BEA7DCE53851B4896 /* Pods-OCClass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

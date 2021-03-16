@@ -1,0 +1,6 @@
+framework module Pods_OCClass {
+  umbrella header "Pods-OCClass-umbrella.h"
+
+  export *
+  module * { export * }
+}
