@@ -7,10 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class ListItemModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ListLoaderFinishBlock)(BOOL success, NSArray<ListItemModel *> *dataArray);
+
 @interface ListLoader : NSObject
-- (void)listDataLoad;
+
+- (void)loadListDataWithFinishBlock:(ListLoaderFinishBlock)finishBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,8 +8,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+/**
+ 文章二级页面
+ */
 @interface WKWebViewVCViewController : UIViewController
+
+- (instancetype)initWithUrlString:(NSString *)urlString;
 
 @end
 

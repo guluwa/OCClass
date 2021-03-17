@@ -6,6 +6,7 @@
 //
 
 #import "NormalTableViewCell.h"
+#import "ListItemModel.h"
 
 @interface NormalTableViewCell ()
 
@@ -24,56 +25,56 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview: ({
-            self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 300, 50)];
+            self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 220, 50)];
             self.titleLabel.font = [UIFont systemFontOfSize:16];
             self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel;
         })];
         [self.contentView addSubview: ({
-            self.sourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 80, 50, 20)];
+            self.sourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 50, 20)];
             self.sourceLabel.font = [UIFont systemFontOfSize:12];
             self.sourceLabel.textColor = [UIColor grayColor];
             self.sourceLabel;
         })];
         [self.contentView addSubview: ({
-            self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 80, 50, 20)];
+            self.commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 70, 50, 20)];
             self.commentLabel.font = [UIFont systemFontOfSize:12];
             self.commentLabel.textColor = [UIColor grayColor];
             self.commentLabel;
         })];
         [self.contentView addSubview: ({
-            self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(180, 80, 50, 20)];
+            self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 70, 50, 20)];
             self.timeLabel.font = [UIFont systemFontOfSize:12];
             self.timeLabel.textColor = [UIColor grayColor];
             self.timeLabel;
         })];
         [self.contentView addSubview: ({
-            self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(330, 15, 70, 70)];
+            self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 80, 70)];
             self.rightImageView.contentMode = UIViewContentModeScaleAspectFill;
             self.rightImageView;
         })];
-        [self.contentView addSubview: ({
-            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 80, 30, 20)];
-            [self.deleteButton setTitle:@"X" forState:UIControlStateNormal];
-            [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted];
+//        [self.contentView addSubview: ({
+//            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 80, 30, 20)];
+//            [self.deleteButton setTitle:@"X" forState:UIControlStateNormal];
+//            [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted];
 //            self.deleteButton.backgroundColor = [UIColor redColor];
-            self.deleteButton.layer.cornerRadius = 10;
-            self.deleteButton.layer.masksToBounds = YES;
-            self.deleteButton.layer.borderWidth = 2;
-            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
-            self.deleteButton;
-        })];
+//            self.deleteButton.layer.cornerRadius = 10;
+//            self.deleteButton.layer.masksToBounds = YES;
+//            self.deleteButton.layer.borderWidth = 2;
+//            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//            [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//            self.deleteButton;
+//        })];
     }
     return self;
 }
 
-- (void)layoutTableViewCell {
-    self.titleLabel.text = @"哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
-    self.titleLabel.numberOfLines = 0;
+- (void)layoutTableViewCellWithItem:(ListItemModel *)item {
+    self.titleLabel.text = [NSString stringWithFormat:@"%@-%@",item.title, item.describe];
+    self.titleLabel.numberOfLines = 2;
     self.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     
-    self.sourceLabel.text = @"guluwa";
+    self.sourceLabel.text = item.biaoqian;
     [self.sourceLabel sizeToFit];
     
     self.commentLabel.text = @"100评论";
@@ -84,7 +85,9 @@
     [self.timeLabel sizeToFit];
     self.timeLabel.frame = CGRectMake(self.commentLabel.frame.origin.x + self.commentLabel.frame.size.width + 15, self.timeLabel.frame.origin.y, self.timeLabel.frame.size.width, self.timeLabel.frame.size.height);
     
-    self.rightImageView.image = [UIImage imageNamed:@"dashatars"];
+#warning NSData基础使用
+    
+    self.rightImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.pic]]];
 }
 
 - (void)deleteButtonClick {

@@ -12,6 +12,7 @@
 #import "WKWebViewVCViewController.h"
 #import "UIViewAnimationView.h"
 #import "ListLoader.h"
+#import "ListItemModel.h"
 
 @interface TestView : UIView
 
@@ -45,7 +46,7 @@
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate, NormalTableCellDelegate>
 
 @property(nonatomic, strong, readwrite) UITableView *tableView;
-@property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+@property(nonatomic, strong, readwrite) NSArray *dataArray;
 @property(nonatomic, strong, readwrite) ListLoader *listLoader;
 
 @end
@@ -60,11 +61,6 @@
 	 */
 	if (self) {
 		NSLog(@"init");
-		_dataArray = [NSMutableArray arrayWithCapacity:0];
-		for(int i = 0; i < 20; i++) {
-			[_dataArray addObject:@(i)];
-		}
-		NSLog(@"%lu", (unsigned long)_dataArray.count);
 	}
 	return self;
 }
@@ -101,6 +97,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	NSLog(@"viewDidLoad");
+    self.title = @"列表";
 //    TestView *view = [[TestView alloc] init];
 //    view.backgroundColor = [UIColor grayColor];
 //    view.frame = CGRectMake(100, 100, 100, 100);
@@ -111,7 +108,13 @@
 	_tableView.delegate = self;
 	[self.view addSubview:_tableView];
     _listLoader = [[ListLoader alloc] init];
-    [_listLoader listDataLoad];
+    __weak typeof(self) wself = self;
+    [_listLoader loadListDataWithFinishBlock:^(BOOL success, NSArray<ListItemModel *> * _Nonnull dataArray) {
+        __strong typeof(self) strongSelf = wself;
+        strongSelf.dataArray = dataArray;
+        [strongSelf.tableView reloadData];
+        NSLog(@"");
+    }];
 }
 
 #pragma mark - UITableViewDelegate
@@ -121,8 +124,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] init];
-	viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+    ListItemModel *model = [self.dataArray objectAtIndex:indexPath.row];
+	WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] initWithUrlString:model.url];
+    viewController.title = model.title;
+//	viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
 	[self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -136,21 +141,21 @@
 		cell = [[NormalTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"tableViewCell"];
 		cell.delegate = self;
 	}
-	[cell layoutTableViewCell];
+	[cell layoutTableViewCellWithItem:[_dataArray objectAtIndex:indexPath.row]];
 //    cell.textLabel.text = [NSString stringWithFormat: @"主标题 - %@", @(indexPath.row)];
 //    cell.detailTextLabel.text = @"副标题";
 	return cell;
 }
 
 - (void)tableViewCell:(UITableViewCell *)tableViewCell clickDeleteButton:(UIButton *)deleteButton {
-	UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
-	CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
-
-	__weak typeof(self) wself = self;
-	[animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
-	         __strong typeof(self) strongSelf = wself;
-	         [strongSelf.dataArray removeLastObject];
-	         [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
-	 }];
+//	UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
+//	CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
+//
+//	__weak typeof(self) wself = self;
+//	[animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
+//	         __strong typeof(self) strongSelf = wself;
+//	         [strongSelf.dataArray removeLastObject];
+//	         [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//	 }];
 }
 @end

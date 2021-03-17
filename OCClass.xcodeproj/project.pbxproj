@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		04006AAB26008804007F0230 /* ListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AAA26008804007F0230 /* ListLoader.m */; };
+		04006AB42601ABCF007F0230 /* ListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AB32601ABCF007F0230 /* ListItemModel.m */; };
 		0455268125EF301A00245A0F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268025EF301A00245A0F /* SceneDelegate.m */; };
 		0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268525EF32F100245A0F /* UICollectionViewVC.m */; };
 		0455268B25EF59CA00245A0F /* UIScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268A25EF59CA00245A0F /* UIScrollViewVC.m */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		04006AA926008804007F0230 /* ListLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListLoader.h; sourceTree = "<group>"; };
 		04006AAA26008804007F0230 /* ListLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListLoader.m; sourceTree = "<group>"; };
+		04006AB22601ABCF007F0230 /* ListItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemModel.h; sourceTree = "<group>"; };
+		04006AB32601ABCF007F0230 /* ListItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListItemModel.m; sourceTree = "<group>"; };
 		0455267F25EF301A00245A0F /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0455268025EF301A00245A0F /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0455268425EF32F100245A0F /* UICollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewVC.h; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 			children = (
 				04006AA926008804007F0230 /* ListLoader.h */,
 				04006AAA26008804007F0230 /* ListLoader.m */,
+				04006AB22601ABCF007F0230 /* ListItemModel.h */,
+				04006AB32601ABCF007F0230 /* ListItemModel.m */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -167,7 +172,6 @@
 				BE66E2044455C34900DD8A1A /* Pods-OCClass.debug.xcconfig */,
 				5552108BEA7DCE53851B4896 /* Pods-OCClass.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -295,6 +299,7 @@
 				04006AAB26008804007F0230 /* ListLoader.m in Sources */,
 				04CF7E0F25E354FA003989D3 /* ViewController.m in Sources */,
 				048B9FB025F7489A00F72F1E /* WKWebViewVCViewController.m in Sources */,
+				04006AB42601ABCF007F0230 /* ListItemModel.m in Sources */,
 				04CF7E0925E354FA003989D3 /* AppDelegate.m in Sources */,
 				04CF7E1A25E354FD003989D3 /* main.m in Sources */,
 				0455268125EF301A00245A0F /* SceneDelegate.m in Sources */,
