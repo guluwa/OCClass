@@ -53,18 +53,18 @@
             self.rightImageView.contentMode = UIViewContentModeScaleAspectFill;
             self.rightImageView;
         })];
-//        [self.contentView addSubview: ({
-//            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 80, 30, 20)];
-//            [self.deleteButton setTitle:@"X" forState:UIControlStateNormal];
-//            [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted];
-//            self.deleteButton.backgroundColor = [UIColor redColor];
-//            self.deleteButton.layer.cornerRadius = 10;
-//            self.deleteButton.layer.masksToBounds = YES;
-//            self.deleteButton.layer.borderWidth = 2;
-//            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//            [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//            self.deleteButton;
-//        })];
+        [self.contentView addSubview: ({
+            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(290, 80, 30, 20)];
+            [self.deleteButton setTitle:@"X" forState:UIControlStateNormal];
+            [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted];
+            self.deleteButton.backgroundColor = [UIColor redColor];
+            self.deleteButton.layer.cornerRadius = 10;
+            self.deleteButton.layer.masksToBounds = YES;
+            self.deleteButton.layer.borderWidth = 2;
+            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            self.deleteButton;
+        })];
     }
     return self;
 }

@@ -110,7 +110,7 @@
     _listLoader = [[ListLoader alloc] init];
     __weak typeof(self) wself = self;
     [_listLoader loadListDataWithFinishBlock:^(BOOL success, NSArray<ListItemModel *> * _Nonnull dataArray) {
-        __strong typeof(self) strongSelf = wself;
+        __strong typeof(wself) strongSelf = wself;
         strongSelf.dataArray = dataArray;
         [strongSelf.tableView reloadData];
         NSLog(@"");
@@ -148,14 +148,14 @@
 }
 
 - (void)tableViewCell:(UITableViewCell *)tableViewCell clickDeleteButton:(UIButton *)deleteButton {
-//	UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
-//	CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
-//
-//	__weak typeof(self) wself = self;
-//	[animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
-//	         __strong typeof(self) strongSelf = wself;
+	UIViewAnimationView *animationView = [[UIViewAnimationView alloc] initWithFrame:self.view.bounds];
+	CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
+
+	__weak typeof(self) wself = self;
+	[animationView showDeleteViewFromPoint:rect.origin clickBlock:^{
+	         __strong typeof(self) strongSelf = wself;
 //	         [strongSelf.dataArray removeLastObject];
 //	         [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//	 }];
+	 }];
 }
 @end
