@@ -10,6 +10,10 @@
 
 @interface VideoCoverView()
 
+@property(nonatomic, strong, readwrite) AVPlayerItem *playerItem;
+@property(nonatomic, strong, readwrite) AVPlayer *player;
+@property(nonatomic, strong, readwrite) AVPlayerLayer *playerLayer;
+
 @property(nonatomic, strong, readwrite) UIImageView *coverView;
 @property(nonatomic, strong, readwrite) UIImageView *playButton;
 @property(nonatomic, strong, readwrite) NSString *videoUrl;
@@ -31,8 +35,16 @@
         })];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(_tapToPlay)];
         [self addGestureRecognizer:tapGesture];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handlePlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_playerItem removeObserver:self forKeyPath:@"status"];
+    [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
 }
 
 #pragma mark - public method 加载视频
@@ -51,17 +63,44 @@
     
     AVAsset *asset = [AVAsset assetWithURL:url];
     
-    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    _playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    [_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [_playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
     
-    AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+    CMTime duration = _playerItem.duration;
+    CGFloat videoDuration = CMTimeGetSeconds(duration);
     
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
-    playerLayer.frame = _coverView.frame;
-    [_coverView.layer addSublayer:playerLayer];
+    _player = [AVPlayer playerWithPlayerItem:_playerItem];
+    [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+        NSLog(@"播放进度 %@", @(CMTimeGetSeconds(time)));
+    }];
     
-    [player play];
-    
+    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+    _playerLayer.frame = _coverView.frame;
+    [_coverView.layer addSublayer:_playerLayer];
+        
     NSLog(@"");
 }
 
+- (void)_handlePlayEnd {
+//    [_playerLayer removeFromSuperlayer];
+//    _playerItem = nil;
+//    _player = nil;
+    [_player seekToTime:CMTimeMake(0, 1)];
+    [_player play];
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"status"]) {
+        if (((NSNumber *)[change objectForKey:NSKeyValueChangeNewKey]).integerValue == AVPlayerStatusReadyToPlay) {
+            [_player play];
+        } else {
+            NSLog(@"");
+        }
+    } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
+        NSLog(@"缓冲： %@", [change objectForKey:NSKeyValueChangeNewKey]);
+    }
+}
 @end

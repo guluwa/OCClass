@@ -48,7 +48,7 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VideoCoverView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCoverView" forIndexPath:indexPath];
     if ([cell isKindOfClass:[VideoCoverView class]]) {
-        [(VideoCoverView *)cell layoutWithVideoCoverUrl:@"icon.bundle/cover.jpg" videoUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
+        [(VideoCoverView *)cell layoutWithVideoCoverUrl:@"icon.bundle/cover.jpg" videoUrl:@"https://locallimit.us.sinaimg.cn/I1p9UpjClx07Ll024Ooo010412022VpE0E010.mp4?label=mp4_720p&template=1280x720.25.0&trans_finger=1f0da16358befad33323e3a1b7f95fc9&media_id=4618262227648526&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&ps=3lckmu&uid=3ZoTIp&ab=3915-g1,966-g1,3370-g1,1493-g0,1192-g0,1191-g0,3601-g5,1258-g0&Expires=1616580034&ssig=yLIeHgvo8P&KID=unistore,video"];
     }
     return cell;
 }
