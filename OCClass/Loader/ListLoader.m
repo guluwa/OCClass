@@ -17,6 +17,9 @@
 
 - (void)loadListDataWithFinishBlock:(ListLoaderFinishBlock)finishBlock {
     
+    NSArray<ListItemModel *> *listData = [self _readDataFromLocal];
+    finishBlock(YES, listData);
+    
     NSString *str = @"http://www.qidianlife.com/Singular/index.php?m=App&c=MaMain&a=index&uid=1579431187&page=1&pagesize=10";
     
     //    [[AFHTTPSessionManager manager] GET:str parameters:nil headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -53,6 +56,21 @@
         });
     }];
     [dataTask resume];
+}
+
+- (NSArray<ListItemModel *> *)_readDataFromLocal {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathArray firstObject];
+    NSString *listDataPath = [cachePath stringByAppendingPathComponent:@"GuluwaData/list"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    
+    id unarchiverObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [ListItemModel class], nil] fromData:readListData error:nil];
+    
+    if ([unarchiverObj isKindOfClass:[NSArray class]] && [unarchiverObj count] > 0) {
+        return (NSArray<ListItemModel *> *)unarchiverObj;
+    }
+    return nil;
 }
 
 - (void)archiveListDataWithArray:(NSArray<ListItemModel *> *)array {

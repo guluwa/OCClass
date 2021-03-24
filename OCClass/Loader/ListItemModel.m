@@ -18,6 +18,7 @@
     [coder encodeObject:self.url forKey:@"url"];
     [coder encodeObject:self.pic forKey:@"pic"];
     [coder encodeObject:self.ctime forKey:@"ctime"];
+    [coder encodeObject:self.aid forKey:@"aid"];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)coder {
@@ -29,6 +30,7 @@
         self.url = [coder decodeObjectForKey:@"url"];
         self.pic = [coder decodeObjectForKey:@"pic"];
         self.ctime = [coder decodeObjectForKey:@"ctime"];
+        self.aid = [coder decodeObjectForKey:@"aid"];
     }
     return self;
 }
@@ -47,6 +49,7 @@
 	self.url = [dictionary objectForKey:@"url"];
 	self.pic = [dictionary objectForKey:@"pic"];
 	self.ctime = [dictionary objectForKey:@"ctime"];
+    self.aid = [dictionary objectForKey:@"aid"];
 }
 
 @end

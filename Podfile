@@ -6,6 +6,6 @@ target 'OCClass' do
   use_frameworks!
 
   # Pods for OCClass
-  pod 'AFNetworking' 
-
+  pod 'AFNetworking'
+  pod 'SDWebImage'
 end

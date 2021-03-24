@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		04006AAB26008804007F0230 /* ListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AAA26008804007F0230 /* ListLoader.m */; };
 		04006AB42601ABCF007F0230 /* ListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AB32601ABCF007F0230 /* ListItemModel.m */; };
+		04469D562609C93200C62FF6 /* VideoCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04469D552609C93200C62FF6 /* VideoCoverView.m */; };
+		04469D5D2609CCDB00C62FF6 /* icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04469D5C2609CCDB00C62FF6 /* icon.bundle */; };
 		0455268125EF301A00245A0F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268025EF301A00245A0F /* SceneDelegate.m */; };
 		0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268525EF32F100245A0F /* UICollectionViewVC.m */; };
 		0455268B25EF59CA00245A0F /* UIScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268A25EF59CA00245A0F /* UIScrollViewVC.m */; };
@@ -29,6 +31,9 @@
 		04006AAA26008804007F0230 /* ListLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListLoader.m; sourceTree = "<group>"; };
 		04006AB22601ABCF007F0230 /* ListItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListItemModel.h; sourceTree = "<group>"; };
 		04006AB32601ABCF007F0230 /* ListItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListItemModel.m; sourceTree = "<group>"; };
+		04469D542609C93200C62FF6 /* VideoCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCoverView.h; sourceTree = "<group>"; };
+		04469D552609C93200C62FF6 /* VideoCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCoverView.m; sourceTree = "<group>"; };
+		04469D5C2609CCDB00C62FF6 /* icon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icon.bundle; sourceTree = "<group>"; };
 		0455267F25EF301A00245A0F /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0455268025EF301A00245A0F /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0455268425EF32F100245A0F /* UICollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewVC.h; sourceTree = "<group>"; };
@@ -84,6 +89,8 @@
 			children = (
 				0455268425EF32F100245A0F /* UICollectionViewVC.h */,
 				0455268525EF32F100245A0F /* UICollectionViewVC.m */,
+				04469D542609C93200C62FF6 /* VideoCoverView.h */,
+				04469D552609C93200C62FF6 /* VideoCoverView.m */,
 			);
 			path = "UICollectionView使用";
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 				04CF7E1025E354FA003989D3 /* Main.storyboard */,
 				04CF7E1325E354FD003989D3 /* Assets.xcassets */,
 				04CF7E1525E354FD003989D3 /* LaunchScreen.storyboard */,
+				04469D5C2609CCDB00C62FF6 /* icon.bundle */,
 				04CF7E1825E354FD003989D3 /* Info.plist */,
 				04CF7E1925E354FD003989D3 /* main.m */,
 			);
@@ -241,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04469D5D2609CCDB00C62FF6 /* icon.bundle in Resources */,
 				04CF7E1725E354FD003989D3 /* LaunchScreen.storyboard in Resources */,
 				04CF7E1425E354FD003989D3 /* Assets.xcassets in Resources */,
 				04CF7E1225E354FA003989D3 /* Main.storyboard in Resources */,
@@ -304,6 +313,7 @@
 				04CF7E1A25E354FD003989D3 /* main.m in Sources */,
 				0455268125EF301A00245A0F /* SceneDelegate.m in Sources */,
 				0455268B25EF59CA00245A0F /* UIScrollViewVC.m in Sources */,
+				04469D562609C93200C62FF6 /* VideoCoverView.m in Sources */,
 				048B9FB625F771B000F72F1E /* UIViewAnimationView.m in Sources */,
 				0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */,
 				0455269125EF629800245A0F /* NormalTableViewCell.m in Sources */,

@@ -125,10 +125,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ListItemModel *model = [self.dataArray objectAtIndex:indexPath.row];
-	WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] initWithUrlString:model.url];
+    UICollectionViewVC *viewController = [[UICollectionViewVC alloc] initWithUrlString:model.url];
     viewController.title = model.title;
 //	viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
 	[self.navigationController pushViewController:viewController animated:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:model.aid];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

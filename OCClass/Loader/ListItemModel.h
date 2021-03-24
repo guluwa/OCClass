@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readwrite) NSString *url;
 @property(nonatomic, strong, readwrite) NSString *pic;
 @property(nonatomic, strong, readwrite) NSString *ctime;
+@property(nonatomic, strong, readwrite) NSString *aid;
 
 - (void)configWithDictionary:(NSDictionary *)dictionary;
 

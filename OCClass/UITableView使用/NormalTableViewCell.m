@@ -7,6 +7,7 @@
 
 #import "NormalTableViewCell.h"
 #import "ListItemModel.h"
+#import "SDWebImage.h"
 
 @interface NormalTableViewCell ()
 
@@ -70,6 +71,10 @@
 }
 
 - (void)layoutTableViewCellWithItem:(ListItemModel *)item {
+    
+    BOOL hasRead = [[NSUserDefaults standardUserDefaults]boolForKey:item.aid];
+    
+    self.titleLabel.textColor = hasRead ? [UIColor lightGrayColor] : [UIColor blackColor];
     self.titleLabel.text = [NSString stringWithFormat:@"%@-%@",item.title, item.describe];
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
@@ -87,7 +92,25 @@
     
 #warning NSData基础使用
     
-    self.rightImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.pic]]];
+//    NSThread *downloadImageThread = [[NSThread alloc] initWithBlock:^{
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.pic]]];
+//        self.rightImageView.image = image;
+//    }];
+//    downloadImageThread.name = @"downloadImageThread";
+//    [downloadImageThread start];
+    
+//    dispatch_queue_global_t downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_main_t mainQueue = dispatch_get_main_queue();
+//    dispatch_async(downloadQueue, ^{
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.pic]]];
+//        dispatch_sync(mainQueue, ^{
+//            self.rightImageView.image = image;
+//        });
+//    });
+    
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        NSLog(@"");
+    }];
 }
 
 - (void)deleteButtonClick {
