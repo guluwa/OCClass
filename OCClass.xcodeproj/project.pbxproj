@@ -11,6 +11,9 @@
 		04006AB42601ABCF007F0230 /* ListItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04006AB32601ABCF007F0230 /* ListItemModel.m */; };
 		04469D562609C93200C62FF6 /* VideoCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04469D552609C93200C62FF6 /* VideoCoverView.m */; };
 		04469D5D2609CCDB00C62FF6 /* icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04469D5C2609CCDB00C62FF6 /* icon.bundle */; };
+		04469E49260C317200C62FF6 /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04469E48260C317200C62FF6 /* VideoPlayer.m */; };
+		04469E4D260C5C1800C62FF6 /* VideoToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04469E4C260C5C1800C62FF6 /* VideoToolBar.m */; };
+		04469E51260C68D600C62FF6 /* ScreenUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04469E50260C68D600C62FF6 /* ScreenUtils.m */; };
 		0455268125EF301A00245A0F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268025EF301A00245A0F /* SceneDelegate.m */; };
 		0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268525EF32F100245A0F /* UICollectionViewVC.m */; };
 		0455268B25EF59CA00245A0F /* UIScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0455268A25EF59CA00245A0F /* UIScrollViewVC.m */; };
@@ -34,6 +37,12 @@
 		04469D542609C93200C62FF6 /* VideoCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCoverView.h; sourceTree = "<group>"; };
 		04469D552609C93200C62FF6 /* VideoCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCoverView.m; sourceTree = "<group>"; };
 		04469D5C2609CCDB00C62FF6 /* icon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icon.bundle; sourceTree = "<group>"; };
+		04469E47260C317200C62FF6 /* VideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		04469E48260C317200C62FF6 /* VideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
+		04469E4B260C5C1800C62FF6 /* VideoToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoToolBar.h; sourceTree = "<group>"; };
+		04469E4C260C5C1800C62FF6 /* VideoToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoToolBar.m; sourceTree = "<group>"; };
+		04469E4F260C68D600C62FF6 /* ScreenUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenUtils.h; sourceTree = "<group>"; };
+		04469E50260C68D600C62FF6 /* ScreenUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenUtils.m; sourceTree = "<group>"; };
 		0455267F25EF301A00245A0F /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0455268025EF301A00245A0F /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		0455268425EF32F100245A0F /* UICollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewVC.h; sourceTree = "<group>"; };
@@ -91,6 +100,10 @@
 				0455268525EF32F100245A0F /* UICollectionViewVC.m */,
 				04469D542609C93200C62FF6 /* VideoCoverView.h */,
 				04469D552609C93200C62FF6 /* VideoCoverView.m */,
+				04469E47260C317200C62FF6 /* VideoPlayer.h */,
+				04469E48260C317200C62FF6 /* VideoPlayer.m */,
+				04469E4B260C5C1800C62FF6 /* VideoToolBar.h */,
+				04469E4C260C5C1800C62FF6 /* VideoToolBar.m */,
 			);
 			path = "UICollectionView使用";
 			sourceTree = "<group>";
@@ -164,6 +177,8 @@
 				0455268025EF301A00245A0F /* SceneDelegate.m */,
 				04CF7E0D25E354FA003989D3 /* ViewController.h */,
 				04CF7E0E25E354FA003989D3 /* ViewController.m */,
+				04469E4F260C68D600C62FF6 /* ScreenUtils.h */,
+				04469E50260C68D600C62FF6 /* ScreenUtils.m */,
 				04CF7E1025E354FA003989D3 /* Main.storyboard */,
 				04CF7E1325E354FD003989D3 /* Assets.xcassets */,
 				04CF7E1525E354FD003989D3 /* LaunchScreen.storyboard */,
@@ -305,9 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04469E51260C68D600C62FF6 /* ScreenUtils.m in Sources */,
 				04006AAB26008804007F0230 /* ListLoader.m in Sources */,
 				04CF7E0F25E354FA003989D3 /* ViewController.m in Sources */,
 				048B9FB025F7489A00F72F1E /* WKWebViewVCViewController.m in Sources */,
+				04469E4D260C5C1800C62FF6 /* VideoToolBar.m in Sources */,
 				04006AB42601ABCF007F0230 /* ListItemModel.m in Sources */,
 				04CF7E0925E354FA003989D3 /* AppDelegate.m in Sources */,
 				04CF7E1A25E354FD003989D3 /* main.m in Sources */,
@@ -316,6 +333,7 @@
 				04469D562609C93200C62FF6 /* VideoCoverView.m in Sources */,
 				048B9FB625F771B000F72F1E /* UIViewAnimationView.m in Sources */,
 				0455268625EF32F100245A0F /* UICollectionViewVC.m in Sources */,
+				04469E49260C317200C62FF6 /* VideoPlayer.m in Sources */,
 				0455269125EF629800245A0F /* NormalTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

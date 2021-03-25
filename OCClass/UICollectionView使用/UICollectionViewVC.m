@@ -7,6 +7,7 @@
 
 #import "UICollectionViewVC.h"
 #import "VideoCoverView.h"
+#import "VideoToolBar.h"
 
 @interface UICollectionViewVC ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -31,7 +32,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 10;
     flowLayout.minimumInteritemSpacing = 10;
-    flowLayout.itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width / 16 * 9);
+    flowLayout.itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width / 16 * 9 + VideoToolBarHeight);
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     
     collectionView.dataSource = self;
@@ -48,7 +49,7 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VideoCoverView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCoverView" forIndexPath:indexPath];
     if ([cell isKindOfClass:[VideoCoverView class]]) {
-        [(VideoCoverView *)cell layoutWithVideoCoverUrl:@"icon.bundle/cover.jpg" videoUrl:@"https://locallimit.us.sinaimg.cn/I1p9UpjClx07Ll024Ooo010412022VpE0E010.mp4?label=mp4_720p&template=1280x720.25.0&trans_finger=1f0da16358befad33323e3a1b7f95fc9&media_id=4618262227648526&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&ps=3lckmu&uid=3ZoTIp&ab=3915-g1,966-g1,3370-g1,1493-g0,1192-g0,1191-g0,3601-g5,1258-g0&Expires=1616580034&ssig=yLIeHgvo8P&KID=unistore,video"];
+        [(VideoCoverView *)cell layoutWithVideoCoverUrl:@"icon.bundle/cover.jpg" videoUrl:@"https://f.video.weibocdn.com/VMtfaSxVlx07LlthdA0801041202dMtd0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&trans_finger=0bde055d9aa01b9f6bc04ccac8f0b471&media_id=4618369551499278&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&ps=3lckmu&uid=3ZoTIp&ab=,1493-g0,1192-g0,1191-g0,1258-g0&Expires=1616646005&ssig=B49J4SosvH&KID=unistore,video"];
     }
     return cell;
 }

@@ -36,25 +36,26 @@
     NSURLSession *session = [NSURLSession sharedSession];
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        NSError *jsonError;
-        id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
+        if (data != nil) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            NSError *jsonError;
+            id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            
 #warning 类型检查
-        NSArray *dataArray = [((NSDictionary *)jsonObj) objectForKey:@"data"];
-        NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:dataArray.count];
-        for(NSDictionary *item in dataArray) {
-            ListItemModel *model = [[ListItemModel alloc]init];
-            [model configWithDictionary:item];
-            [itemArray addObject:model];
-        }
-        [strongSelf archiveListDataWithArray:itemArray.copy];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if(finishBlock) {
-                finishBlock(error == nil, itemArray.copy);
+            NSArray *dataArray = [((NSDictionary *)jsonObj) objectForKey:@"data"];
+            NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:dataArray.count];
+            for(NSDictionary *item in dataArray) {
+                ListItemModel *model = [[ListItemModel alloc]init];
+                [model configWithDictionary:item];
+                [itemArray addObject:model];
             }
-        });
-    }];
+            [strongSelf archiveListDataWithArray:itemArray.copy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(finishBlock) {
+                    finishBlock(error == nil, itemArray.copy);
+                }
+            });
+        }}];
     [dataTask resume];
 }
 
