@@ -7,6 +7,7 @@
 
 #import "WKWebViewVCViewController.h"
 #import <WebKit/WebKit.h>
+#import "ScreenUtils.h"
 
 @interface WKWebViewVCViewController ()<WKNavigationDelegate>
 
@@ -33,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:({
-        self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 88, self.view.frame.size.width, self.view.frame.size.height - 88)];
+        self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 44, self.view.frame.size.width, self.view.frame.size.height - STATUS_BAR_HEIGHT - 44)];
         self.webView;
     })];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_articleUrl]]];
@@ -41,7 +42,7 @@
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.view addSubview:({
-        self.progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, 88, self.view.frame.size.width, 10)];
+        self.progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 44, self.view.frame.size.width, 10)];
         self.progressView;
     })];
 }

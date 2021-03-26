@@ -9,4 +9,19 @@
 
 @implementation ScreenUtils
 
+// iPhone xs max
++ (CGSize)sizeFor65Inch {
+    return CGSizeMake(414, 896);
+}
+
+// iPhone xr
++ (CGSize)sizeFor61Inch {
+    return CGSizeMake(414, 896);
+}
+
+// iPhone x
++ (CGSize)sizeFor58Inch {
+    return CGSizeMake(375, 812);
+}
+
 @end

@@ -125,7 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ListItemModel *model = [self.dataArray objectAtIndex:indexPath.row];
-    UICollectionViewVC *viewController = [[UICollectionViewVC alloc] initWithUrlString:model.url];
+    WKWebViewVCViewController *viewController = [[WKWebViewVCViewController alloc] initWithUrlString:model.url];
     viewController.title = model.title;
 //	viewController.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
 	[self.navigationController pushViewController:viewController animated:YES];
