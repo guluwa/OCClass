@@ -109,7 +109,7 @@
 //    [fileHandle synchronizeFile];
 //    [fileHandle closeFile];
     
-    NSLog(@"");
+//    NSLog(@"");
 }
 
 @end

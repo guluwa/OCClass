@@ -110,7 +110,7 @@
 //    });
     
     [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        NSLog(@"");
+//        NSLog(@"");
     }];
 }
 

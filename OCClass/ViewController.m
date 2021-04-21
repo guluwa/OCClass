@@ -113,7 +113,6 @@
         __strong typeof(wself) strongSelf = wself;
         strongSelf.dataArray = dataArray;
         [strongSelf.tableView reloadData];
-        NSLog(@"");
     }];
 }
 
